@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<%- include("../layout/cabecera") %>
+
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="../../public/imagenes/Cyber_sophos.png" alt="Logo de la Compañía" width="500" height="150">
+    </div>
+    
+    <div class="form-container">
+      <h2>LEVANTAMIENTO DE INFORMACIÓN FIREWALL SOPHOS XGS</h2>
+      <form method="post" action="/sophos">
+        <div class="form-line jf-required" data-type="control_dropdown" id="id_49"><label class="form-label form-label-top form-label-auto" id="label_49" for="input_49"> Contacto Cybersafe: <span class="form-required">*</span> </label>
+          <div id="cid_49" class="form-input-wide jf-required" data-layout="half"> 
+            <select class="form-dropdown validate[required]" id="input_49" name="contactoCybersafe" style="width:310px" data-component="dropdown" required="" aria-label="Contacto Cybersafe: ">
+            <option value="">Seleccione</option> 
+            <option value="Alba Toro">Alba Toro</option>
+              <option value="Angelica Molina">Angelica Molina</option>
+              <option value="María Camila Morales">María Camila Morales</option>
+              <option value="Yarli Baquero">Yarli Baquero</option>
+              <option value="Zandia Orjuela">Zandia Orjuela</option>
+            </select> </div><br>
+            </div>
+          <div class="form-group">
+          <label for="nombreCompania">Nombre de la Compañía *</label>
+          <input type="text" class="form-control" id="nombreCompania" name="nombreCompania" required>
+        </div>
+       
+
+        <div class="form-group">
+          <label for="personaEncargada">Persona encargada del proyecto? *</label>
+          <input type="text" class="form-control" id="personaEncargada" name="personaEncargada" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cargoPersonaEncargada">Cargo de la persona encargada *</label>
+          <input type="text" class="form-control" id="cargoPersonaEncargada" name="cargoPersonaEncargada" required>
+        </div>
+        <div class="form-group">
+            <label for="tiempoImplementacion">¿Cuánto tiempo estiman para la implementación del proyecto (meses)? *</label>
+            <input type="number" class="form-control" id="tiempoImplementacion" name="tiempoImplementacion" required>
+        </div>
+        <div class="form-group">
+        <label>¿Publica servicios en la Nube?</label><br>
+        <label for="serviciosNubeSi">Sí</label>
+        <input type="radio" id="serviciosNubeSi" name="serviciosNube" value="si" onchange="mostrarServiciosNubeDetalles()" required>
+        <label for="serviciosNubeNo">No</label>
+        <input type="radio" id="serviciosNubeNo" name="serviciosNube" value="no" onchange="mostrarServiciosNubeDetalles()" required><br>
+    
+        <div id="serviciosNubeDetalles" style="display: none;">
+        <label for="serviciosNubeDetallesInput">¿Indicar que tipo de servicio</label><br>
+        <input type="text" class="form-control" id="serviciosNubeDetallesInput" name="serviciosNubeDetallesInput">
+        <small>Ejemplos: Páginas, ERP, Bases de datos, etc.</small>
+        </div> <br>   
+         
+        <div class="form-group">
+            <label for="masDeUnaSede">Actualmente la compañía cuenta con más de una sede?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="masDeUnaSede" id="sedeSi" value="si">
+              <label class="form-check-label" for="sedeSi">Sí</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="masDeUnaSede" id="sedeNo" value="no">
+              <label class="form-check-label" for="sedeNo">No</label>
+            </div>
+          </div>
+  
+          <div class="form-group hide" id="cantidadSedesDiv">
+            <label for="cantidadSedes">Cuantas sedes son:</label>
+            <input type="number" class="form-control" id="cantidadSedes" name="cantidadSedes" onchange="mostrarFirewall()">
+          </div>
+  
+          <div class="form-group hide" id="masDeUnFirewallDiv">
+            <label for="masDeUnFirewall">¿Requiere más de un firewall?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="masDeUnFirewall" id="firewallSi" value="si">
+              <label class="form-check-label" for="firewallSi">Sí</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="masDeUnFirewall" id="firewallNo" value="no">
+              <label class="form-check-label" for="firewallNo">No</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="conexionSedes">¿Cómo se conectan las sedes con la principal? *</label>
+            <input type="text" class="form-control" id="conexionSedes" name="conexionSedes" required>
+            <small>Ejemplos: VPN , L2TP, IPSec, MPLS, etc.</small>
+          </div>
+          <div class="form-group">
+            <label for="dispositivosGeneranTrafico">Cantidad de dispositivos que generen tráfico *</label>
+            <input type="text" class="form-control" id="dispositivosGeneranTrafico" name="dispositivosGeneranTrafico" required>
+            <small>Ejemplos: pc, portátiles, servidores, celulares, tablets, etc.</small>
+          </div>
+          <div class="form-group hide" id="vpnDiv">
+            <label for="vpn">¿Requiere conexión mediante VPN?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="vpn" id="vpnSi" value="si">
+              <label class="form-check-label" for="vpnSi">Sí</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="vpn" id="vpnNo" value="no">
+              <label class="form-check-label" for="vpnNo">No</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cantidadCanales">¿Con cuántos canales de internet tiene?</label>
+            <input type="number" class="form-control" id="cantidadCanales" name="cantidadCanales">
+          </div>
+          <div class="form-group">
+            <label for="cuantasMbps">¿Especifique de cuantas Mbps es cada uno?</label>
+            <input type="number" class="form-control" id="cuantasMbps" name="cuantasMbps">
+          </div>
+          <div class="form-group hide" id="telefoniaIPDiv">
+            <label for="directorioA">¿Tiene Directorio activo?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="directorioA" id="directorioASi" value="si">
+              <label class="form-check-label" for="directorioASi">Sí</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="directorioA" id="directorioANo" value="no">
+              <label class="form-check-label" for="telefoniaIPNo">No</label>
+            </div><br>
+          <div class="form-group hide" id="telefoniaIPDiv">
+            <label for="telefoniaIP">¿Tiene telefonía IP?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="telefoniaIP" id="telefoniaIPSi" value="si">
+              <label class="form-check-label" for="telefoniaIPSi">Sí</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="telefoniaIP" id="telefoniaIPNo" value="no">
+              <label class="form-check-label" for="telefoniaIPNo">No</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="proyeccionDis">¿Cuál es la proyección de crecimiento de dispositivos a 3 Años?*</label>
+            <input type="text" class="form-control" id="proyeccionDis" name="proyeccionDis" required>
+            <small>pc, portátiles, servidores, celulares, tables, etc.</small>
+          </div>
+          <div class="form-group">
+            <label for="funcionalidades">¿Cuál de las siguientes funcionalidades requiere adicionar? *</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="funcionalidades" id="sslTlsDecryption" value="SSL/TLS Decryption">
+              <label class="form-check-label" for="sslTlsDecryption">SSL/TLS Decryption</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="funcionalidades" id="intrusionPrevention" value="Intrusion Prevention">
+              <label class="form-check-label" for="intrusionPrevention">Intrusion Prevention</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="funcionalidades" id="applicationControl" value="Application Control">
+              <label class="form-check-label" for="applicationControl">Application Control</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="funcionalidades" id="antiMalwareProtection" value="Anti-Malware Protection">
+              <label class="form-check-label" for="antiMalwareProtection">Anti-Malware Protection</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="funcionalidades" id="webProtection" value="Web Protection">
+              <label class="form-check-label" for="webProtection">Web Protection</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="observaciones">Observaciones Adicionales (0/288 caracteres)</label>
+            <textarea class="form-control" id="observaciones" name="observaciones" placeholder="Ingrese sus observaciones aquí" oninput="limitarTexto(event)" maxlength="288"></textarea>
+          </div>
+        
+  
+          <!-- Resto del formulario -->
+          
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+   <%- include("../layout/footer") %>
+   <script src="../../public/scripts/interform.js"></script>
+</body>
+</html>
+    
